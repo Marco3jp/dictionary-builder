@@ -12,10 +12,10 @@
             <input type="text" class="dictionary-row-category-input" v-model="entry.category"
                    :readonly="!editable">
         </div>
-        <div class="dictionary-row-created">
+        <div class="dictionary-row-created" v-if="!editable">
             {{(new Date(entry.created_at.seconds*1000)).toISOString()}}
         </div>
-        <div class="dictionary-row-updated">
+        <div class="dictionary-row-updated" v-if="!editable">
             {{(new Date(entry.updated_at.seconds*1000)).toISOString()}}
         </div>
     </div>
