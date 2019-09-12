@@ -1,6 +1,6 @@
 {
   "name": "dictionary-builder",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "This is web app to build sharable dictionary for Google Japanese Input and Mozc.",
   "main": "src/index.ts",
   "scripts": {

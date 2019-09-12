@@ -11,8 +11,8 @@
                 <button id="dictionary-downloader-button" type="button" @click="download">ダウンロード</button>
             </div>
         </div>
-        <dictionary-input class="dictionary-input" :entry="creatingDictionaryEntry" @post="postData"
-                          @clear="clearForm"></dictionary-input>
+        <dictionary-input class="dictionary-input" :entry="creatingDictionaryEntry" :error-message="errorMessage"
+                          @post="postData" @clear="clearForm"></dictionary-input>
         <dictionary-table class="dictionary-table" :dictionaryEntries="createdDictionaryEntries"></dictionary-table>
     </div>
 </template>
@@ -40,6 +40,7 @@
                     updated_at: undefined,
                     deleted_at: undefined,
                 },
+                errorMessage: "",
             }
         },
         mounted: function () {
@@ -53,7 +54,7 @@
                 projectId: window.config.projectId
             });
             this.db = firebase.firestore();
-            this.getData();
+            this.getAllData();
         },
         methods: {
             download() {
@@ -72,17 +73,25 @@
                     this.creatingDictionaryEntry.updated_at = firebase.firestore.FieldValue.serverTimestamp();
                     this.creatingDictionaryEntry.deleted_at = 0;
                     this.db.collection("entries").add(this.creatingDictionaryEntry).then(result => {
+                        this.getData(result.id).then(postData => {
+                            this.createdDictionaryEntries.push(postData);
+                        });
                         this.clearForm();
                     }).catch(e => {
-                        console.warn(e);
+                        this.errorMessage = e;
                     });
                 }
             },
-            getData() {
+            getAllData() {
                 this.db.collection("entries").get().then((entries) => {
                     entries.forEach(entry => {
                         this.createdDictionaryEntries.push(entry.data());
                     })
+                });
+            },
+            getData(id: string): Promise<DictionaryEntry> {
+                return this.db.collection("entries").doc(id).get().then(entry => {
+                    return entry.data();
                 });
             },
             // TODO: Readingに細かなバリデーションを用意
@@ -101,6 +110,9 @@
                 this.creatingDictionaryEntry.word = "";
                 this.creatingDictionaryEntry.category = "";
                 this.creatingDictionaryEntry.comment = "";
+                this.creatingDictionaryEntry.created_at = undefined;
+                this.creatingDictionaryEntry.updated_at = undefined;
+                this.creatingDictionaryEntry.deleted_at = undefined;
             }
 
         }
@@ -133,8 +145,8 @@
         margin: 80px auto;
 
         .dictionary-input {
-            height: 90px;
             width: 100%;
+            margin-bottom: 30px;
         }
 
         .dictionary-table {
