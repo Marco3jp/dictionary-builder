@@ -53,7 +53,7 @@
                 projectId: window.config.projectId
             });
             this.db = firebase.firestore();
-            this.getData();
+            this.getAllData();
         },
         methods: {
             download() {
@@ -78,7 +78,7 @@
                     });
                 }
             },
-            getData() {
+            getAllData() {
                 this.db.collection("entries").get().then((entries) => {
                     entries.forEach(entry => {
                         this.createdDictionaryEntries.push(entry.data());
