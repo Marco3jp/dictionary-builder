@@ -72,6 +72,9 @@
                     this.creatingDictionaryEntry.updated_at = firebase.firestore.FieldValue.serverTimestamp();
                     this.creatingDictionaryEntry.deleted_at = 0;
                     this.db.collection("entries").add(this.creatingDictionaryEntry).then(result => {
+                        this.getData(result.id).then(postData => {
+                            this.createdDictionaryEntries.push(postData);
+                        });
                         this.clearForm();
                     }).catch(e => {
                         this.errorMessage = e;
@@ -83,6 +86,11 @@
                     entries.forEach(entry => {
                         this.createdDictionaryEntries.push(entry.data());
                     })
+                });
+            },
+            getData(id: string): Promise<DictionaryEntry> {
+                return this.db.collection("entries").doc(id).get().then(entry => {
+                    return entry.data();
                 });
             },
             // TODO: Readingに細かなバリデーションを用意
