@@ -101,6 +101,9 @@
                 this.creatingDictionaryEntry.word = "";
                 this.creatingDictionaryEntry.category = "";
                 this.creatingDictionaryEntry.comment = "";
+                this.creatingDictionaryEntry.created_at = undefined;
+                this.creatingDictionaryEntry.updated_at = undefined;
+                this.creatingDictionaryEntry.deleted_at = undefined;
             }
 
         }
