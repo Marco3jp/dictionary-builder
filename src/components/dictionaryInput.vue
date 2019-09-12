@@ -3,7 +3,7 @@
         <dictionary-row class="dictionary-row" :editable="true" :entry="entry"></dictionary-row>
         <div class="dictionary-input-tools">
             <button type="button" @click="clear">クリア</button>
-            <button type="button" @click="$emit('send')">送信</button>
+            <button type="button" @click="$emit('post')">送信</button>
         </div>
     </div>
 </template>
