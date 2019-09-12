@@ -37,9 +37,6 @@ module.exports = merge(baseConfig(false), {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: false,
-                            data: `
-                                @import './src/_values.scss';
-                                `
                         }
                     }
                 ],
