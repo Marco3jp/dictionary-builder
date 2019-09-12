@@ -74,7 +74,7 @@
                     this.creatingDictionaryEntry.deleted_at = 0;
                     this.db.collection("entries").add(this.creatingDictionaryEntry).then(result => {
                         this.getData(result.id).then(postData => {
-                            this.createdDictionaryEntries.push(postData);
+                            this.createdDictionaryEntries.unshift(postData);
                         });
                         this.clearForm();
                     }).catch(e => {
@@ -86,7 +86,8 @@
                 this.db.collection("entries").get().then((entries) => {
                     entries.forEach(entry => {
                         this.createdDictionaryEntries.push(entry.data());
-                    })
+                    });
+                    this.sortEntriesDescUpdatedAt();
                 });
             },
             getData(id: string): Promise<DictionaryEntry> {
@@ -113,8 +114,18 @@
                 this.creatingDictionaryEntry.created_at = undefined;
                 this.creatingDictionaryEntry.updated_at = undefined;
                 this.creatingDictionaryEntry.deleted_at = undefined;
+            },
+            sortEntriesDescUpdatedAt() {
+                this.createdDictionaryEntries.sort((a, b) => {
+                    if (a.updated_at.seconds === b.updated_at.seconds) {
+                        return 0;
+                    } else if (a.updated_at.seconds > b.updated_at.seconds) {
+                        return -1;
+                    } else {
+                        return 1;
+                    }
+                })
             }
-
         }
     }
 </script>
