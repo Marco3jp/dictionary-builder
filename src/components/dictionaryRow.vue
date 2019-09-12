@@ -13,12 +13,10 @@
                    :readonly="!editable">
         </div>
         <div class="dictionary-row-created">
-            <input type="text" class="dictionary-row-created-input" v-model="entry.created"
-                   :readonly="!editable">
+            {{(new Date(entry.created_at.seconds*1000)).toISOString()}}
         </div>
         <div class="dictionary-row-updated">
-            <input type="text" class="dictionary-row-updated-input" v-model="entry.updated"
-                   :readonly="!editable">
+            {{(new Date(entry.updated_at.seconds*1000)).toISOString()}}
         </div>
     </div>
 </template>
@@ -41,12 +39,15 @@
         & > div {
             width: $table-cell-width;
 
+            &.dictionary-row-created, &.dictionary-row-updated {
+                text-align: center;
+            }
+
             & > input {
                 width: 80%;
                 height: 100%;
                 margin: 0 10%;
             }
-
         }
     }
 </style>
