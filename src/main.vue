@@ -2,8 +2,9 @@
     <div class="dictionary-builder">
         <div class="flex">
             <div id="description">
-                <h1>Dictionary builder</h1>
-                <p>Google日本語入力やMozcで使える辞書を作って共有しよう！</p>
+                <h1>Pretty Dictionary builder</h1>
+                <p>日常会話で頻繁に登場するプリティー単語ですが、これからは細かな表記に悩まされなくなります！</p>
+                <p>キャラクター名、楽曲名などを登録して共有しましょう。Google日本語入力やMozcでインポート可能なファイルがダウンロードできます！</p>
             </div>
             <div id="dictionary-downloader">
                 <a ref="dictionaryDownloadLink" id="dictionary-downloader-hidden-link" download="" href=""></a>
