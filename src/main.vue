@@ -10,8 +10,8 @@
                 <button id="dictionary-downloader-button" type="button" @click="download">ダウンロード</button>
             </div>
         </div>
-        <dictionary-input class="dictionary-input" :entry="creatingDictionaryEntry" @post="postData"
-                          @clear="clearForm"></dictionary-input>
+        <dictionary-input class="dictionary-input" :entry="creatingDictionaryEntry" :error-message="errorMessage"
+                          @post="postData" @clear="clearForm"></dictionary-input>
         <dictionary-table class="dictionary-table" :dictionaryEntries="createdDictionaryEntries"></dictionary-table>
     </div>
 </template>
@@ -39,6 +39,7 @@
                     updated_at: undefined,
                     deleted_at: undefined,
                 },
+                errorMessage: "",
             }
         },
         mounted: function () {
@@ -73,7 +74,7 @@
                     this.db.collection("entries").add(this.creatingDictionaryEntry).then(result => {
                         this.clearForm();
                     }).catch(e => {
-                        console.warn(e);
+                        this.errorMessage = e;
                     });
                 }
             },
@@ -132,8 +133,8 @@
         margin: 80px auto;
 
         .dictionary-input {
-            height: 90px;
             width: 100%;
+            margin-bottom: 30px;
         }
 
         .dictionary-table {
