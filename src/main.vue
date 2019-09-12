@@ -10,7 +10,8 @@
                 <button id="dictionary-downloader-button" type="button" @click="download">ダウンロード</button>
             </div>
         </div>
-        <dictionary-input class="dictionary-input" :entry="creatingDictionaryEntry" @post="postData"></dictionary-input>
+        <dictionary-input class="dictionary-input" :entry="creatingDictionaryEntry" @post="postData"
+                          @clear="clearForm"></dictionary-input>
         <dictionary-table class="dictionary-table" :dictionaryEntries="createdDictionaryEntries"></dictionary-table>
     </div>
 </template>
@@ -70,7 +71,7 @@
                     this.creatingDictionaryEntry.updated_at = firebase.firestore.FieldValue.serverTimestamp();
                     this.creatingDictionaryEntry.deleted_at = 0;
                     this.db.collection("entries").add(this.creatingDictionaryEntry).then(result => {
-                        console.log(result);
+                        this.clearForm();
                     }).catch(e => {
                         console.warn(e);
                     });
@@ -93,7 +94,14 @@
                     && typeof entry.created_at === "undefined"
                     && typeof entry.updated_at === "undefined"
                     && typeof entry.deleted_at === "undefined"
+            },
+            clearForm() {
+                this.creatingDictionaryEntry.reading = "";
+                this.creatingDictionaryEntry.word = "";
+                this.creatingDictionaryEntry.category = "";
+                this.creatingDictionaryEntry.comment = "";
             }
+
         }
     }
 </script>

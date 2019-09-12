@@ -2,7 +2,7 @@
     <div class="dictionary-input">
         <dictionary-row class="dictionary-row" :editable="true" :entry="entry"></dictionary-row>
         <div class="dictionary-input-tools">
-            <button type="button" @click="clear">クリア</button>
+            <button type="button" @click="$emit('clear')">クリア</button>
             <button type="button" @click="$emit('post')">送信</button>
         </div>
     </div>
@@ -16,14 +16,6 @@
         name: "dictionaryInput",
         components: {DictionaryRow},
         props: ["entry"],
-        methods: {
-            clear: function () {
-                Vue.set(this.entry, "reading", "");
-                Vue.set(this.entry, "word", "");
-                Vue.set(this.entry, "category", "");
-                Vue.set(this.entry, "comment", "");
-            }
-        }
     }
 </script>
 
