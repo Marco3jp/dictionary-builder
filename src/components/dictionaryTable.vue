@@ -1,22 +1,5 @@
 <template>
     <div class="dictionary-table">
-        <div class="dictionary-table-header">
-            <div class="dictionary-table-header-reading">
-                reading
-            </div>
-            <div class="dictionary-table-header-word">
-                word
-            </div>
-            <div class="dictionary-table-header-category">
-                category
-            </div>
-            <div class="dictionary-table-header-created">
-                created
-            </div>
-            <div class="dictionary-table-header-updated">
-                updated
-            </div>
-        </div>
         <dictionary-row class="dictionary-row" v-for="(entry, index) in dictionaryEntries" :entry="entry"
                         :key="index"></dictionary-row>
     </div>

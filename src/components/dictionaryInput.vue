@@ -1,16 +1,5 @@
 <template>
-    <div class="dictionary-input">
-        <div class="dictionary-input-header">
-            <div class="dictionary-table-header-reading">
-                読み方
-            </div>
-            <div class="dictionary-table-header-word">
-                単語
-            </div>
-            <div class="dictionary-table-header-category" title="固有名詞、人名……などです">
-                カテゴリ
-            </div>
-        </div>
+    <v-form class="dictionary-input">
         <dictionary-row class="dictionary-row" :editable="true" :entry="entry"></dictionary-row>
         <div class="dictionary-input-tools">
             <p v-if="errorMessage !== ''" class="dictionary-input-tools-error">{{}}</p>
