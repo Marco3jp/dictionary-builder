@@ -3,10 +3,10 @@
         <dictionary-row class="dictionary-row" :editable="true" :entry="entry"></dictionary-row>
         <div class="dictionary-input-tools">
             <p v-if="errorMessage !== ''" class="dictionary-input-tools-error">{{}}</p>
-            <button type="button" @click="$emit('clear')">クリア</button>
-            <button type="button" @click="$emit('post')">登録</button>
+            <v-btn outlined type="button" @click="$emit('clear')">クリア</v-btn>
+            <v-btn outlined type="button" @click="$emit('post')">登録</v-btn>
         </div>
-    </div>
+    </v-form>
 </template>
 
 <script lang="ts">
