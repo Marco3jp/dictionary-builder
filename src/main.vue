@@ -1,20 +1,24 @@
 <template>
-    <div class="dictionary-builder">
-        <div class="flex">
-            <div id="description">
-                <h1>Pretty Dictionary builder</h1>
-                <p>日常会話で頻繁に登場するプリティー単語ですが、これからは細かな表記に悩まされなくなります！</p>
-                <p>キャラクター名、楽曲名などを登録して共有しましょう。Google日本語入力やMozcでインポート可能なファイルがダウンロードできます！</p>
+    <v-app id="dictionary-builder">
+        <v-content id="dictionary-builder-inner-container">
+            <h1>Pretty Dictionary builder</h1>
+            <div class="flex">
+                <div id="description">
+                    <p>日常会話で頻繁に登場するプリティー単語ですが、これからは細かな表記に悩まされなくなります！</p>
+                    <p>キャラクター名、楽曲名などを登録して共有しましょう。Google日本語入力やMozcでインポート可能なファイルがダウンロードできます！</p>
+                </div>
+                <div id="dictionary-downloader">
+                    <a ref="dictionaryDownloadLink" id="dictionary-downloader-hidden-link" download="" href=""></a>
+                    <v-btn outlined x-large id="dictionary-downloader-button" type="button" @click="download"
+                           class="pink--text text--lighten-3">ダウンロード
+                    </v-btn>
+                </div>
             </div>
-            <div id="dictionary-downloader">
-                <a ref="dictionaryDownloadLink" id="dictionary-downloader-hidden-link" download="" href=""></a>
-                <button id="dictionary-downloader-button" type="button" @click="download">ダウンロード</button>
-            </div>
-        </div>
-        <dictionary-input class="dictionary-input" :entry="creatingDictionaryEntry" :error-message="errorMessage"
-                          @post="postData" @clear="clearForm"></dictionary-input>
-        <dictionary-table class="dictionary-table" :dictionaryEntries="createdDictionaryEntries"></dictionary-table>
-    </div>
+            <dictionary-input class="dictionary-input" :entry="creatingDictionaryEntry" :error-message="errorMessage"
+                              @post="postData" @clear="clearForm"></dictionary-input>
+            <dictionary-table class="dictionary-table" :dictionaryEntries="createdDictionaryEntries"></dictionary-table>
+        </v-content>
+    </v-app>
 </template>
 
 <script lang="ts">
@@ -131,6 +135,7 @@
 </script>
 <style lang="scss">
     @import "../node_modules/normalize.css/normalize.css";
+    @import '../node_modules/vuetify/dist/vuetify.min.css';
 
     * {
         box-sizing: border-box;
@@ -151,19 +156,24 @@
         }
     }
 
-    .dictionary-builder {
-        width: 1400px;
-        margin: 80px auto;
+    #dictionary-builder {
+        width: 100%;
+        height: 100%;
 
-        .dictionary-input {
-            width: 100%;
-            margin-bottom: 30px;
-        }
+        #dictionary-builder-inner-container {
+            width: 1400px;
+            margin: 80px auto;
 
-        .dictionary-table {
-            width: 100%;
-            height: 700px;
-            overflow-y: auto;
+            .dictionary-input {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+
+            .dictionary-table {
+                width: 100%;
+                height: 700px;
+                overflow-y: auto;
+            }
         }
     }
 </style>
