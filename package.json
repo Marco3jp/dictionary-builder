@@ -2,7 +2,7 @@
   "name": "dictionary-builder",
   "version": "1.1.1",
   "description": "This is web app to build sharable dictionary for Google Japanese Input and Mozc.",
-  "main": "src/index.ts",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack-cli --config webpack.config.prd.js",
@@ -11,23 +11,29 @@
   "author": "Marco",
   "dependencies": {
     "css-loader": "^3.2.0",
+    "deepmerge": "^4.0.0",
+    "fibers": "^4.0.1",
+    "firebase": "^6.6.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
+    "normalize.css": "^8.0.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "sass": "^1.23.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "ts-loader": "^6.1.0",
     "typescript": "^3.6.3",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",
+    "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
+    "vuetify": "^2.1.1",
+    "vuetify-loader": "^1.3.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.8.0",
-    "webpack-merge": "^4.2.2",
-    "normalize.css": "^8.0.1",
-    "firebase": "^6.6.0"
+    "webpack-merge": "^4.2.2"
   }
 }

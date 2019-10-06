@@ -8,54 +8,6 @@ module.exports = merge(baseConfig(false), {
     optimization: {
         minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
     },
-    module: {
-        rules: [
-            {
-                test: /\.ts$/,
-                use: [
-                    {
-                        loader: 'ts-loader',
-                        options: {
-                            appendTsSuffixTo: [/\.vue$/]
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.scss/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            url: false,
-                            sourceMap: false,
-                            importLoaders: 2
-                        },
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: false,
-                        }
-                    }
-                ],
-            },
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader'
-            },
-            {
-                test: /\.(html)$/,
-                use: {
-                    loader: 'html-loader',
-                    options: {
-                        attrs: [':data-src']
-                    }
-                }
-            },
-        ]
-    },
     resolve: {
         alias: {
             vue: 'vue/dist/vue.min.js',
